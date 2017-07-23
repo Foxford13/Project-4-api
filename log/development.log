@@ -302,3 +302,457 @@ FOREIGN KEY ("user_id")
   [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(1347200930821886805)[0m
   [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-07-23 17:17:27.467721"], ["updated_at", "2017-07-23 17:17:27.467721"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (192.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "final_project_api_development"[0m
+  [1m[35m (195.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "final_project_api_test"[0m
+  [1m[35m (384.5ms)[0m  [1m[35mCREATE DATABASE "final_project_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (392.6ms)[0m  [1m[35mCREATE DATABASE "final_project_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1347200930821886805);[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20170720085412)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "firstname" character varying, "lastname" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170720085412"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateItems (20170723160437)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "items" ("id" bigserial primary key, "title" character varying, "brand" character varying, "super_type" character varying, "sub_type" character varying, "short_description" character varying, "price" character varying, "full_description" character varying, "user_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_d4b6334db2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX  "index_items_on_user_id" ON "items"  ("user_id")[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170723160437"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-07-23 17:17:32.168898"], ["updated_at", "2017-07-23 17:17:32.168898"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1347200930821886805)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (18.3ms)[0m  [1m[35mTRUNCATE users RESTART IDENTITY CASCADE[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dave@dave.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "dave"], ["email", "dave@dave.com"], ["password_digest", "$2a$10$6L1o7tBKI8ktquN.o9c1Ae0DJ1FanH6N.wb7xSoxtrFy9nrP7UuPm"], ["created_at", "2017-07-23 17:19:57.680037"], ["updated_at", "2017-07-23 17:19:57.680037"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dave@dave.com"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dave@dave.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+Started POST "/api/register" for 127.0.0.1 at 2017-07-23 18:22:14 +0100
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationsController#register as */*
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.44ms)
+Completed 422 Unprocessable Entity in 46ms (Views: 6.7ms | ActiveRecord: 7.9ms)
+
+
+Started POST "/api/register" for 127.0.0.1 at 2017-07-23 18:25:47 +0100
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"claire@claire.com", "username"=>"claire", "firstname"=>"Claire", "lastname"=>"Smith", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"claire@claire.com", "username"=>"claire", "firstname"=>"Claire", "lastname"=>"Smith", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Unpermitted parameter: :authentication
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "claire@claire.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "firstname", "lastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "claire"], ["firstname", "Claire"], ["lastname", "Smith"], ["email", "claire@claire.com"], ["password_digest", "$2a$10$C4Bi2SeXmz7UQLkUYbQvJezrGDMXARKtBpJKbnktjhPigGIj3EANm"], ["created_at", "2017-07-23 17:25:47.827445"], ["updated_at", "2017-07-23 17:25:47.827445"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (7.56ms)
+Completed 500 Internal Server Error in 126ms (ActiveRecord: 10.2ms)
+
+
+  
+NoMethodError (undefined method `first_name' for #<User:0x007ffcedb9ea28>
+Did you mean?  firstname
+               firstname=
+               firstname?):
+  
+app/controllers/authentications_controller.rb:5:in `register'
+Started POST "/api/register" for 127.0.0.1 at 2017-07-23 18:26:12 +0100
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"claire@claire.com", "username"=>"claire", "firstname"=>"Claire", "lastname"=>"Smith", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"claire@claire.com", "username"=>"claire", "firstname"=>"Claire", "lastname"=>"Smith", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Unpermitted parameter: :authentication
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "claire@claire.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 422 Unprocessable Entity in 100ms (Views: 2.9ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:26:50 +0100
+Error occurred while parsing request parameters.
+Contents:
+
+{
+  "email": "claire@claire.com", 
+  "username": "claire"
+  "password": "password"
+}
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (822: unexpected token at '{
+  "email": "claire@claire.com", 
+  "username": "claire"
+  "password": "password"
+}
+
+'):
+  
+actionpack (5.1.2) lib/action_dispatch/http/parameters.rb:113:in `rescue in parse_formatted_parameters'
+actionpack (5.1.2) lib/action_dispatch/http/parameters.rb:107:in `parse_formatted_parameters'
+actionpack (5.1.2) lib/action_dispatch/http/request.rb:358:in `block in POST'
+rack (2.0.3) lib/rack/request.rb:57:in `fetch'
+rack (2.0.3) lib/rack/request.rb:57:in `fetch_header'
+actionpack (5.1.2) lib/action_dispatch/http/request.rb:357:in `POST'
+actionpack (5.1.2) lib/action_controller/metal/params_wrapper.rb:286:in `_wrapper_enabled?'
+actionpack (5.1.2) lib/action_controller/metal/params_wrapper.rb:235:in `process_action'
+activerecord (5.1.2) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.2) lib/abstract_controller/base.rb:124:in `process'
+actionpack (5.1.2) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.2) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.2) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.2) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.2) lib/action_dispatch/journey/router.rb:46:in `block in serve'
+actionpack (5.1.2) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.2) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.2) lib/action_dispatch/routing/route_set.rb:832:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+activerecord (5.1.2) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.2) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.2) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.2) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.0) lib/rack/cors.rb:93:in `call'
+railties (5.1.2) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:26:54 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"claire@claire.com", "username"=>"claire", "password"=>"[FILTERED]", "authentication"=>{"email"=>"claire@claire.com", "username"=>"claire", "password"=>"[FILTERED]"}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:26:58 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"claire@claire.com", "username"=>"claire", "password"=>"[FILTERED]", "authentication"=>{"email"=>"claire@claire.com", "username"=>"claire", "password"=>"[FILTERED]"}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:29:10 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"q", "username"=>"q", "password"=>"[FILTERED]", "authentication"=>{"email"=>"q", "username"=>"q", "password"=>"[FILTERED]"}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:29:31 +0100
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"q", "username"=>"q", "password"=>"[FILTERED]", "authentication"=>{"email"=>"q", "username"=>"q", "password"=>"[FILTERED]"}}
+Completed 204 No Content in 0ms (ActiveRecord: 1.6ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:30:03 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"q", "username"=>"q", "password"=>"[FILTERED]", "authentication"=>{"email"=>"q", "username"=>"q", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "q"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 401 Unauthorized in 17ms (Views: 2.8ms | ActiveRecord: 3.8ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:30:25 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"q", "password"=>"[FILTERED]", "authentication"=>{"email"=>"q", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "q"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 401 Unauthorized in 2ms (Views: 0.4ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:30:26 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"q", "password"=>"[FILTERED]", "authentication"=>{"email"=>"q", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "q"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 401 Unauthorized in 2ms (Views: 0.5ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/api/register" for 127.0.0.1 at 2017-07-23 18:31:21 +0100
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"claire@claire.com", "username"=>"claire", "firstname"=>"Claire", "lastname"=>"Smith", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"claire@claire.com", "username"=>"claire", "firstname"=>"Claire", "lastname"=>"Smith", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Unpermitted parameter: :authentication
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "claire@claire.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 422 Unprocessable Entity in 103ms (Views: 0.4ms | ActiveRecord: 8.8ms)
+
+
+Started POST "/api/register" for 127.0.0.1 at 2017-07-23 18:31:30 +0100
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"qq", "username"=>"claire", "firstname"=>"Claire", "lastname"=>"Smith", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"qq", "username"=>"claire", "firstname"=>"Claire", "lastname"=>"Smith", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Unpermitted parameter: :authentication
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "qq"], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "users" ("username", "firstname", "lastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "claire"], ["firstname", "Claire"], ["lastname", "Smith"], ["email", "qq"], ["password_digest", "$2a$10$dxea6XCcSBt1pPwaaqRwbuFgAWiruxyI2KBQMboEuHPI61NOG.ClW"], ["created_at", "2017-07-23 17:31:30.713936"], ["updated_at", "2017-07-23 17:31:30.713936"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.27ms)
+Completed 200 OK in 92ms (Views: 9.2ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:31:43 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"qq", "password"=>"[FILTERED]", "authentication"=>{"email"=>"qq", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "qq"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 72ms (ActiveRecord: 0.5ms)
+
+
+  
+NameError (uninitialized constant AuthenticationsController::Auth):
+  
+app/controllers/authentications_controller.rb:14:in `login'
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:33:25 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"qq", "password"=>"[FILTERED]", "authentication"=>{"email"=>"qq", "password"=>"[FILTERED]"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.01ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 11ms (Views: 8.5ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:33:28 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"qq", "password"=>"[FILTERED]", "authentication"=>{"email"=>"qq", "password"=>"[FILTERED]"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:33:29 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"qq", "password"=>"[FILTERED]", "authentication"=>{"email"=>"qq", "password"=>"[FILTERED]"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:33:38 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"q", "password"=>"[FILTERED]", "authentication"=>{"email"=>"q", "password"=>"[FILTERED]"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+
+
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (195.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "final_project_api_development"[0m
+  [1m[35m (193.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "final_project_api_test"[0m
+  [1m[35m (389.9ms)[0m  [1m[35mCREATE DATABASE "final_project_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (389.7ms)[0m  [1m[35mCREATE DATABASE "final_project_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "items" CASCADE[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "items" ("id" bigserial primary key, "title" character varying, "brand" character varying, "super_type" character varying, "sub_type" character varying, "short_description" character varying, "price" character varying, "full_description" character varying, "user_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_items_on_user_id" ON "items"  ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "firstname" character varying, "lastname" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (7.1ms)[0m  [1m[35mALTER TABLE "items" ADD CONSTRAINT "fk_rails_d4b6334db2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20170723160437)[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20170720085412);
+
+[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-07-23 17:34:01.239382"], ["updated_at", "2017-07-23 17:34:01.239382"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "items" CASCADE[0m
+  [1m[35m (15.3ms)[0m  [1m[35mCREATE TABLE "items" ("id" bigserial primary key, "title" character varying, "brand" character varying, "super_type" character varying, "sub_type" character varying, "short_description" character varying, "price" character varying, "full_description" character varying, "user_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_items_on_user_id" ON "items"  ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "firstname" character varying, "lastname" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "items" ADD CONSTRAINT "fk_rails_d4b6334db2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20170723160437)[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20170720085412);
+
+[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-07-23 17:34:01.340987"], ["updated_at", "2017-07-23 17:34:01.340987"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (7.8ms)[0m  [1m[35mTRUNCATE users RESTART IDENTITY CASCADE[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "micky"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "firstname", "lastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "mickyginger"], ["firstname", "Mike"], ["lastname", "Hayden"], ["email", "micky"], ["password_digest", "$2a$10$geCrevwumOwkbob7XRyswe35U2GAXmWO9qVMcVQpmBfsUZSkUjD.G"], ["created_at", "2017-07-23 17:34:01.475955"], ["updated_at", "2017-07-23 17:34:01.475955"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "eis"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "firstname", "lastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "eisacke"], ["firstname", "Emily"], ["lastname", "Isacke"], ["email", "eis"], ["password_digest", "$2a$10$eJk1eK/Fe9TQOGLhVDhxtOh8SFvYk926VQmfm6VqsRAPq379Es59u"], ["created_at", "2017-07-23 17:34:01.554522"], ["updated_at", "2017-07-23 17:34:01.554522"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "mark"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "firstname", "lastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "markyjangles"], ["firstname", "Marc"], ["lastname", "De Vois"], ["email", "mark"], ["password_digest", "$2a$10$g6okwmS7v87lnHF1L5L5TuhGbUMlb5N/tGO5ZKqUJBtA0KvJCgnja"], ["created_at", "2017-07-23 17:34:01.628515"], ["updated_at", "2017-07-23 17:34:01.628515"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "q"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "firstname", "lastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "q"], ["firstname", "q"], ["lastname", "q"], ["email", "q"], ["password_digest", "$2a$10$ej69cmbHy1ZmCksUSgcsfuvhzp6fwryH1wp/2xxxOIIpLET0gLliy"], ["created_at", "2017-07-23 17:34:01.708040"], ["updated_at", "2017-07-23 17:34:01.708040"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1347200930821886805);[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(1347200930821886805)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:37:00 +0100
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"q", "password"=>"[FILTERED]", "authentication"=>{"email"=>"q", "password"=>"[FILTERED]"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 4.0ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:38:16 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"q", "password"=>"[FILTERED]", "authentication"=>{"email"=>"q", "password"=>"[FILTERED]"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (7.7ms)[0m  [1m[35mTRUNCATE users RESTART IDENTITY CASCADE[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "micky"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "firstname", "lastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "mickyginger"], ["firstname", "Mike"], ["lastname", "Hayden"], ["email", "micky"], ["password_digest", "$2a$10$QbZbGVHehdi8qn3hPLAvIumWI5wD55xowFwo1JPqmvPiWoQMOXhl6"], ["created_at", "2017-07-23 17:40:13.688999"], ["updated_at", "2017-07-23 17:40:13.688999"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "eis"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "firstname", "lastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "eisacke"], ["firstname", "Emily"], ["lastname", "Isacke"], ["email", "eis"], ["password_digest", "$2a$10$HdEPdkT8OhNloEroquqcz.ISKPXl.SF5LTiLAJKuHovNstCP1p8Fi"], ["created_at", "2017-07-23 17:40:13.761833"], ["updated_at", "2017-07-23 17:40:13.761833"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "mark"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "firstname", "lastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "markyjangles"], ["firstname", "Marc"], ["lastname", "De Vois"], ["email", "mark"], ["password_digest", "$2a$10$5VTxgze556sxHabfc9cvFOeHxzAWhAHibbg2y9DCp1QUz7ZdLNOp2"], ["created_at", "2017-07-23 17:40:13.838497"], ["updated_at", "2017-07-23 17:40:13.838497"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "q"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "firstname", "lastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "q"], ["firstname", "q"], ["lastname", "q"], ["email", "q"], ["password_digest", "$2a$10$R15EvgifX9DBglC.PXUShec9s.UEDE6Q.KGnMX20WeE5XcWKLCmui"], ["created_at", "2017-07-23 17:40:13.914406"], ["updated_at", "2017-07-23 17:40:13.914406"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/api/register" for 127.0.0.1 at 2017-07-23 18:40:22 +0100
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationsController#register as */*
+  Parameters: {"username"=>"matt", "firstname"=>"Matt", "lastname"=>"Bradley", "email"=>"matt@matt.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"username"=>"matt", "firstname"=>"Matt", "lastname"=>"Bradley", "email"=>"matt@matt.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 3.6ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/api/register" for 127.0.0.1 at 2017-07-23 18:40:43 +0100
+Processing by AuthenticationsController#register as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.21ms)
+Completed 422 Unprocessable Entity in 73ms (Views: 1.6ms | ActiveRecord: 16.5ms)
+
+
+Started POST "/api/register" for 127.0.0.1 at 2017-07-23 18:40:45 +0100
+Processing by AuthenticationsController#register as */*
+  Parameters: {"username"=>"matt", "firstname"=>"Matt", "lastname"=>"Bradley", "email"=>"matt@matt.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"username"=>"matt", "firstname"=>"Matt", "lastname"=>"Bradley", "email"=>"matt@matt.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/register" for 127.0.0.1 at 2017-07-23 18:42:09 +0100
+Processing by AuthenticationsController#register as */*
+  Parameters: {"username"=>"matt", "firstname"=>"Matt", "lastname"=>"Bradley", "email"=>"matt@matt.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"username"=>"matt", "firstname"=>"Matt", "lastname"=>"Bradley", "email"=>"matt@matt.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Unpermitted parameter: :authentication
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "matt@matt.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "firstname", "lastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "matt"], ["firstname", "Matt"], ["lastname", "Bradley"], ["email", "matt@matt.com"], ["password_digest", "$2a$10$8DzPWn8Ja2MVFNonVDtEPebXGPqu62I2xJFspoVfIEMkxJc5OGYda"], ["created_at", "2017-07-23 17:42:19.841089"], ["updated_at", "2017-07-23 17:42:19.841089"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.27ms)
+Completed 200 OK in 120ms (Views: 8.9ms | ActiveRecord: 8.4ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:42:40 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"matt@matt.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"matt@matt.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "matt@matt.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.43ms)
+Completed 200 OK in 81ms (Views: 5.8ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-23 18:42:58 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"q", "password"=>"[FILTERED]", "authentication"=>{"email"=>"q", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "q"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 200 OK in 76ms (Views: 0.6ms | ActiveRecord: 0.5ms)
+
+

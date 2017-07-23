@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
-  get 'authentications/register'
-
-  get 'authentications/login'
-
-  resources :items
   scope :api do
-    resources :users
+    resources :users, except: [:create]
+    resources :items
+    post 'register', to: 'authentications#register'
+    post 'login', to: 'authentications#login'
   end
 end
