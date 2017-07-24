@@ -10717,3 +10717,817 @@ No serializer found for resource: #<Conversation id: 4, sender_id: 4, receiver_i
 Completed 200 OK in 13ms (Views: 9.0ms | ActiveRecord: 1.9ms)
 
 
+  [1m[36mConversation Load (0.5ms)[0m  [1m[34mSELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (2.6ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."conversation_id" = $1 LIMIT $2[0m  [["conversation_id", 1], ["LIMIT", 11]]
+Started GET "/api/conversations" for 127.0.0.1 at 2017-07-24 16:42:45 +0100
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ConversationsController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mConversation Load (0.7ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE (sender_id = 4 OR receiver_id = 4)[0m
+No serializer found for resource: #<Conversation id: 4, sender_id: 4, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Conversation::ActiveRecord_Relation (0.66ms)
+Completed 200 OK in 62ms (Views: 14.3ms | ActiveRecord: 16.6ms)
+
+
+Started GET "/api/conversations/1" for 127.0.0.1 at 2017-07-24 16:42:52 +0100
+Processing by ConversationsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (3.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mConversation Load (1.2ms)[0m  [1m[34mSELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Conversation (1.07ms)
+Completed 200 OK in 49ms (Views: 8.2ms | ActiveRecord: 22.3ms)
+
+
+Started GET "/api/conversations/1" for 127.0.0.1 at 2017-07-24 16:42:52 +0100
+Processing by ConversationsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mConversation Load (0.4ms)[0m  [1m[34mSELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Conversation (0.38ms)
+Completed 200 OK in 4ms (Views: 1.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/conversations/1/messages" for 127.0.0.1 at 2017-07-24 16:42:55 +0100
+Processing by MessagesController#index as */*
+  Parameters: {"conversation_id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mConversation Load (0.4ms)[0m  [1m[34mSELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.9ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."conversation_id" = $1 ORDER BY "messages"."id" DESC LIMIT $2[0m  [["conversation_id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Message Load (0.0ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."conversation_id" = $1 ORDER BY "messages"."id" DESC LIMIT $2[0m  [["conversation_id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Message Load (0.0ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."conversation_id" = $1 ORDER BY "messages"."id" DESC LIMIT $2[0m  [["conversation_id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Completed 204 No Content in 49ms (ActiveRecord: 13.0ms)
+
+
+Started GET "/api/conversations/2/messages" for 127.0.0.1 at 2017-07-24 16:43:02 +0100
+Processing by MessagesController#index as */*
+  Parameters: {"conversation_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mConversation Load (0.5ms)[0m  [1m[34mSELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.5ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."conversation_id" = $1 ORDER BY "messages"."id" DESC LIMIT $2[0m  [["conversation_id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Message Load (0.0ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."conversation_id" = $1 ORDER BY "messages"."id" DESC LIMIT $2[0m  [["conversation_id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Message Load (0.0ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."conversation_id" = $1 ORDER BY "messages"."id" DESC LIMIT $2[0m  [["conversation_id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "messages" SET "read" = $1, "updated_at" = $2 WHERE "messages"."id" = $3[0m  [["read", "t"], ["updated_at", "2017-07-24 15:43:02.030388"], ["id", 3]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 204 No Content in 16ms (ActiveRecord: 3.6ms)
+
+
+Started GET "/api/conversations/1" for 127.0.0.1 at 2017-07-24 16:43:05 +0100
+Processing by ConversationsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mConversation Load (0.4ms)[0m  [1m[34mSELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Conversation (0.37ms)
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.9ms)
+
+
+  [1m[36mConversation Load (0.5ms)[0m  [1m[34mSELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.5ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."conversation_id" = $1 LIMIT $2[0m  [["conversation_id", 1], ["LIMIT", 11]]
+  [1m[36mConversation Load (0.8ms)[0m  [1m[34mSELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.7ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."conversation_id" = $1 LIMIT $2[0m  [["conversation_id", 5], ["LIMIT", 11]]
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:44:09 +0100
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 2]]
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers]   [1m[36mItem Load (0.7ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (60.93ms)
+Completed 200 OK in 145ms (Views: 110.1ms | ActiveRecord: 25.9ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:44:38 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.7ms)
+
+
+  
+NoMethodError (undefined method `has_man' for UserSerializer:Class
+Did you mean?  has_many):
+  
+app/serializers/user_serializer.rb:4:in `<class:UserSerializer>'
+app/serializers/user_serializer.rb:1:in `<top (required)>'
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:44:57 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (52.58ms)
+Completed 500 Internal Server Error in 76ms (ActiveRecord: 1.5ms)
+
+
+  
+NoMethodError (undefined method `conversations' for #<User:0x007f8f9d272728>):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:45:26 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (15.84ms)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 2.0ms)
+
+
+  
+NoMethodError (undefined method `conversations' for #<User:0x007f8f9d816210>):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:46:25 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.7ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (76.6ms)
+Completed 500 Internal Server Error in 105ms (ActiveRecord: 20.3ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:46:57 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (6.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (100.47ms)
+Completed 500 Internal Server Error in 187ms (ActiveRecord: 7.9ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:47:22 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (2.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (84.83ms)
+Completed 500 Internal Server Error in 135ms (ActiveRecord: 7.0ms)
+
+
+  
+NoMethodError (undefined method `conversations' for #<User:0x007f8fa0990818>
+Did you mean?  conversation
+               conversation=
+               conversation_ids
+               conversation_ids=):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/conversations" for 127.0.0.1 at 2017-07-24 16:48:38 +0100
+Processing by ConversationsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mConversation Load (0.9ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE (sender_id = 4 OR receiver_id = 4)[0m
+No serializer found for resource: #<Conversation id: 4, sender_id: 4, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Conversation::ActiveRecord_Relation (0.97ms)
+Completed 200 OK in 50ms (Views: 21.5ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:48:58 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (39.48ms)
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 10.7ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:49:46 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (1.2ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (81.32ms)
+Completed 500 Internal Server Error in 179ms (ActiveRecord: 33.1ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:51:17 +0100
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.6ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (49.92ms)
+Completed 500 Internal Server Error in 96ms (ActiveRecord: 16.0ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:51:44 +0100
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:51:58 +0100
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.7ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (53.16ms)
+Completed 500 Internal Server Error in 109ms (ActiveRecord: 18.0ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:52:53 +0100
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:53:02 +0100
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (25.87ms)
+Completed 500 Internal Server Error in 93ms (ActiveRecord: 11.7ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column items.item_id does not exist
+LINE 1: SELECT "items".* FROM "items" WHERE "items"."item_id" = $1
+                                            ^
+HINT:  Perhaps you meant to reference the column "items.user_id".
+: SELECT "items".* FROM "items" WHERE "items"."item_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:53:38 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (2.95ms)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.8ms)
+
+
+  
+NameError (uninitialized constant User::ItemsCreated):
+  
+app/controllers/users_controller.rb:9:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:56:22 +0100
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (9.61ms)
+Completed 500 Internal Server Error in 64ms (ActiveRecord: 7.9ms)
+
+
+  
+NameError (uninitialized constant User::ItemsCreated):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:57:14 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (5.75ms)
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 0.7ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.user_id does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."user_id" = $1
+                                            ^
+: SELECT "users".* FROM "users" WHERE "users"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:58:12 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (37.66ms)
+Completed 500 Internal Server Error in 60ms (ActiveRecord: 3.3ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column items.item_id does not exist
+LINE 1: SELECT "items".* FROM "items" WHERE "items"."item_id" = $1
+                                            ^
+HINT:  Perhaps you meant to reference the column "items.user_id".
+: SELECT "items".* FROM "items" WHERE "items"."item_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 16:59:41 +0100
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (24.64ms)
+Completed 500 Internal Server Error in 85ms (ActiveRecord: 13.5ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column items.item_id does not exist
+LINE 1: SELECT "items".* FROM "items" WHERE "items"."item_id" = $1
+                                            ^
+HINT:  Perhaps you meant to reference the column "items.user_id".
+: SELECT "items".* FROM "items" WHERE "items"."item_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:00:22 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (8.34ms)
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 0.7ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column items.item_id does not exist
+LINE 1: SELECT "items".* FROM "items" WHERE "items"."item_id" = $1
+                                            ^
+HINT:  Perhaps you meant to reference the column "items.user_id".
+: SELECT "items".* FROM "items" WHERE "items"."item_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:02:01 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (14.53ms)
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 1.2ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column items.item_id does not exist
+LINE 1: SELECT "items".* FROM "items" WHERE "items"."item_id" = $1
+                                            ^
+HINT:  Perhaps you meant to reference the column "items.user_id".
+: SELECT "items".* FROM "items" WHERE "items"."item_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:03:33 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (2.18ms)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 1.4ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column items.item_id does not exist
+LINE 1: SELECT "items".* FROM "items" WHERE "items"."item_id" = $1
+                                            ^
+HINT:  Perhaps you meant to reference the column "items.user_id".
+: SELECT "items".* FROM "items" WHERE "items"."item_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:04:34 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (3.37ms)
+Completed 500 Internal Server Error in 46ms (ActiveRecord: 15.8ms)
+
+
+  
+NameError (uninitialized constant User::ItemsCreated):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:04:44 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (15.34ms)
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 0.7ms)
+
+
+  
+NoMethodError (undefined method `items_created' for #<User:0x007feeeeab0ec0>):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:04:59 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.7ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (118.17ms)
+Completed 500 Internal Server Error in 150ms (ActiveRecord: 15.5ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:05:57 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (1.7ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (68.37ms)
+Completed 500 Internal Server Error in 99ms (ActiveRecord: 2.6ms)
+
+
+  
+NoMethodError (undefined method `conversations' for #<User:0x007feeecb79a48>):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:06:11 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   [1m[36mItem Load (0.6ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 2]]
+[active_model_serializers]   [1m[36mItem Load (2.8ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (69.48ms)
+Completed 200 OK in 101ms (Views: 85.3ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:06:51 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (10.0ms)
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 0.8ms)
+
+
+  
+NoMethodError (undefined method `items' for #<User:0x007feeed4c2848>):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:07:19 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   [1m[36mItem Load (0.7ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 2]]
+[active_model_serializers]   [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers]   [1m[36mItem Load (0.2ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (45.19ms)
+Completed 200 OK in 60ms (Views: 54.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:08:16 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 2]]
+[active_model_serializers]   [1m[36mItem Load (1.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers]   [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (55.09ms)
+Completed 200 OK in 77ms (Views: 69.9ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:09:24 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (18.17ms)
+Completed 500 Internal Server Error in 56ms (ActiveRecord: 0.7ms)
+
+
+  
+NoMethodError (undefined method `items' for #<User:0x007feeeea2b248>):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:09:41 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   [1m[36mItem Load (0.6ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 2]]
+[active_model_serializers]   [1m[36mItem Load (1.0ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers]   [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (61.23ms)
+Completed 200 OK in 83ms (Views: 76.0ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:10:02 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (1.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   [1m[36mItem Load (1.1ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 2]]
+[active_model_serializers]   [1m[36mItem Load (1.9ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers]   [1m[36mItem Load (1.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (109.01ms)
+Completed 200 OK in 139ms (Views: 127.1ms | ActiveRecord: 6.4ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:10:20 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   [1m[36mItem Load (0.6ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 2]]
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (11.88ms)
+Completed 200 OK in 15ms (Views: 12.6ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:10:28 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (74.8ms)
+Completed 500 Internal Server Error in 112ms (ActiveRecord: 24.9ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:12:23 +0100
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (1.2ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (61.34ms)
+Completed 500 Internal Server Error in 123ms (ActiveRecord: 17.8ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.conversation_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."conversation_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:12:46 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (40.72ms)
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 1.1ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:13:29 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (34.44ms)
+Completed 500 Internal Server Error in 52ms (ActiveRecord: 1.2ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/api/conversations" for 127.0.0.1 at 2017-07-24 17:20:23 +0100
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ConversationsController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mConversation Load (0.8ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE (sender_id = 4 OR receiver_id = 4)[0m
+No serializer found for resource: #<Conversation id: 4, sender_id: 4, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Conversation::ActiveRecord_Relation (0.6ms)
+Completed 200 OK in 65ms (Views: 18.4ms | ActiveRecord: 12.6ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:20:30 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (63.71ms)
+Completed 500 Internal Server Error in 106ms (ActiveRecord: 20.8ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:21:44 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (4.09ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 1.0ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:22:40 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.6ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (44.33ms)
+Completed 500 Internal Server Error in 64ms (ActiveRecord: 6.2ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:23:25 +0100
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (58.58ms)
+Completed 500 Internal Server Error in 114ms (ActiveRecord: 16.7ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:23:54 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (34.43ms)
+Completed 500 Internal Server Error in 54ms (ActiveRecord: 1.1ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column conversations.user_id does not exist
+LINE 1: ...LECT "conversations".* FROM "conversations" WHERE "conversat...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "conversations.item_id".
+: SELECT "conversations".* FROM "conversations" WHERE "conversations"."user_id" = $1):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:25:30 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   [1m[36mConversation Load (5.1ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."sender_id" = $1[0m  [["sender_id", 1]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 1, sender_id: 1, receiver_id: 2, item_id: 1, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers]   [1m[36mItem Load (12.0ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 2]]
+[active_model_serializers]   [1m[36mConversation Load (3.0ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."sender_id" = $1[0m  [["sender_id", 2]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 2, sender_id: 2, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers]   [1m[36mItem Load (1.8ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers]   [1m[36mConversation Load (7.7ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."sender_id" = $1[0m  [["sender_id", 3]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 3, sender_id: 3, receiver_id: 1, item_id: 3, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers]   [1m[36mItem Load (17.9ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers]   [1m[36mConversation Load (4.2ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."sender_id" = $1[0m  [["sender_id", 4]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 4, sender_id: 4, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 1, sender_id: 1, receiver_id: 2, item_id: 1, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 2, sender_id: 2, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 3, sender_id: 3, receiver_id: 1, item_id: 3, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 4, sender_id: 4, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (243.25ms)
+Completed 200 OK in 264ms (Views: 192.4ms | ActiveRecord: 66.2ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:26:45 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.9ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (67.3ms)
+Completed 500 Internal Server Error in 93ms (ActiveRecord: 1.6ms)
+
+
+  
+NoMethodError (undefined method `conversations' for #<User:0x007fea5a20cb68>
+Did you mean?  conversations_send):
+  
+app/controllers/users_controller.rb:9:in `index'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:27:17 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   [1m[36mConversation Load (0.4ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."sender_id" = $1[0m  [["sender_id", 1]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 1, sender_id: 1, receiver_id: 2, item_id: 1, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers]   [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 2]]
+[active_model_serializers]   [1m[36mConversation Load (0.3ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."sender_id" = $1[0m  [["sender_id", 2]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 2, sender_id: 2, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers]   [1m[36mItem Load (2.2ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers]   [1m[36mConversation Load (0.4ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."sender_id" = $1[0m  [["sender_id", 3]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 3, sender_id: 3, receiver_id: 1, item_id: 3, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers]   [1m[36mItem Load (14.8ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers]   [1m[36mConversation Load (0.3ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."sender_id" = $1[0m  [["sender_id", 4]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 4, sender_id: 4, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 1, sender_id: 1, receiver_id: 2, item_id: 1, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 2, sender_id: 2, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 3, sender_id: 3, receiver_id: 1, item_id: 3, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 4, sender_id: 4, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (107.54ms)
+Completed 200 OK in 125ms (Views: 99.8ms | ActiveRecord: 19.9ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 17:27:37 +0100
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mItem Load (3.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   [1m[36mConversation Load (0.5ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."sender_id" = $1[0m  [["sender_id", 1]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 1, sender_id: 1, receiver_id: 2, item_id: 1, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers]   [1m[36mConversation Load (0.4ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."receiver_id" = $1[0m  [["receiver_id", 1]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 3, sender_id: 3, receiver_id: 1, item_id: 3, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers]   [1m[36mItem Load (1.2ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 2]]
+[active_model_serializers]   [1m[36mConversation Load (0.3ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."sender_id" = $1[0m  [["sender_id", 2]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 2, sender_id: 2, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers]   [1m[36mConversation Load (0.5ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."receiver_id" = $1[0m  [["receiver_id", 2]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 1, sender_id: 1, receiver_id: 2, item_id: 1, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers]   [1m[36mItem Load (4.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers]   [1m[36mConversation Load (0.4ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."sender_id" = $1[0m  [["sender_id", 3]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 3, sender_id: 3, receiver_id: 1, item_id: 3, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers]   [1m[36mConversation Load (0.5ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."receiver_id" = $1[0m  [["receiver_id", 3]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 2, sender_id: 2, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers]   [1m[36mItem Load (17.7ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers]   [1m[36mConversation Load (0.3ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."sender_id" = $1[0m  [["sender_id", 4]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 4, sender_id: 4, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers]   [1m[36mConversation Load (1.1ms)[0m  [1m[34mSELECT "conversations".* FROM "conversations" WHERE "conversations"."receiver_id" = $1[0m  [["receiver_id", 4]]
+[active_model_serializers] No serializer found for resource: #<Conversation id: 5, sender_id: 1, receiver_id: 4, item_id: 3, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 1, sender_id: 1, receiver_id: 2, item_id: 1, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 3, sender_id: 3, receiver_id: 1, item_id: 3, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 2, sender_id: 2, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 1, sender_id: 1, receiver_id: 2, item_id: 1, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 3, sender_id: 3, receiver_id: 1, item_id: 3, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 2, sender_id: 2, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 4, sender_id: 4, receiver_id: 3, item_id: 2, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] No serializer found for resource: #<Conversation id: 5, sender_id: 1, receiver_id: 4, item_id: 3, created_at: "2017-07-24 14:56:32", updated_at: "2017-07-24 14:56:32">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (203.43ms)
+Completed 200 OK in 224ms (Views: 185.5ms | ActiveRecord: 33.5ms)
+
+
