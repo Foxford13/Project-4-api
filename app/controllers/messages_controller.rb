@@ -10,9 +10,10 @@ class MessagesController < ApplicationController
 
     if @messages.last && @messages.last.user_id != current_user.id
       @messages.last.update(read: true)
+    else
+    @messages = @conversation.messages.new
+    render json: @messages
     end
-
-    @message = @conversation.messages.new
   end
 
   def create
@@ -20,12 +21,12 @@ class MessagesController < ApplicationController
 
     if @message.save
       redirect_to conversation_messages_path(@conversation)
+      render json: @conversation
     end
   end
 
   private
     def message_params
-      # params.permit(:body, :user_id, :conversation_id)
       params.require(:message).permit(:body, :user_id)
     end
 end

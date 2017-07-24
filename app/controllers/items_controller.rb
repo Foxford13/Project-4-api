@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_event, only: [:show, :update, :destroy]
+  before_action :set_item, only: [:show, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   # GET /items
@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
 
   # POST /items
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(Uploader.upload(item_params))
     @item.user = current_user
 
     if @item.save
@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
 
   # PATCH/PUT /items/1
   def update
-    if @item.update(item_params)
+    if @item.update(Uploader.upload(item_params))
       render json: @item
     else
       render json: @item.errors, status: :unprocessable_entity
@@ -50,6 +50,6 @@ class ItemsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def item_params
       # params.require(:item).permit(:title, :brand, :super_type, :sub_type, :location, :short_description, :price, :full_description, :user_id)
-      params.permit(:title, :brand, :super_type, :sub_type, :location, :short_description, :price, :full_description, :user_id)
+      params.permit(:title, :brand, :super_type, :sub_type, :location, :short_description, :price, :full_description, :user_id, :base64)
     end
 end
