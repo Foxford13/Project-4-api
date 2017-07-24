@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20170724102920) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "conversations", force: :cascade do |t|
+  create_table "conversations", id: :serial, force: :cascade do |t|
     t.integer "sender_id"
     t.integer "receiver_id"
     t.integer "item_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20170724102920) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "items", force: :cascade do |t|
+  create_table "items", id: :serial, force: :cascade do |t|
     t.string "title"
     t.string "brand"
     t.string "super_type"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20170724102920) do
     t.string "short_description"
     t.string "price"
     t.string "full_description"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "location"
@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(version: 20170724102920) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
-  create_table "messages", force: :cascade do |t|
+  create_table "messages", id: :serial, force: :cascade do |t|
     t.text "body"
-    t.bigint "conversation_id"
-    t.bigint "user_id"
+    t.integer "conversation_id"
+    t.integer "user_id"
     t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20170724102920) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "username"
     t.string "firstname"
     t.string "lastname"

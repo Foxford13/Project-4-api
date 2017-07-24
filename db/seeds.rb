@@ -20,16 +20,14 @@ Conversation.create!([
   { sender_id: 1, receiver_id: 2, item_id: 1},
   { sender_id: 2, receiver_id: 3, item_id: 2},
   { sender_id: 3, receiver_id: 1, item_id: 3},
-  { sender_id: 4, receiver_id: 3, item_id: 2},
-  { sender_id: 1, receiver_id: 4, item_id: 3},
-  { sender_id: 4, receiver_id: 2, item_id: 2}
+  { sender_id: 4, receiver_id: 3, item_id: 2}
 ])
 
 Message.create!([
   { body: "asdasdadsad", conversation_id: 1, user_id: 1 },
   { body: "2222222222", conversation_id: 1, user_id: 2 },
   { body: "asdasdadsad", conversation_id: 2, user_id: 3 },
-  { body: "2222222222", conversation_id: 4, user_id: 4 },
-  { body: "asdasdadsad", conversation_id: 5, user_id: 1 },
-  { body: "2222222222", conversation_id: 6, user_id: 4 }
+  { body: "works", conversation_id: 4, user_id: 4 },
+  { body: "works hello", conversation_id: 4, user_id: 3 },
+  { body: "wooorks", conversation_id: 4, user_id: 4 }
 ])

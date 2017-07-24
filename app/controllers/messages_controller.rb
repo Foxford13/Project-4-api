@@ -10,23 +10,22 @@ class MessagesController < ApplicationController
 
     if @messages.last && @messages.last.user_id != current_user.id
       @messages.last.update(read: true)
-    else
-    @messages = @conversation.messages.new
-    render json: @messages
     end
+    render json: @conversation
+    @message = @conversation.messages.new
   end
 
   def create
     @message = @conversation.messages.new(message_params)
-
+    @message.user_id = current_user.id
     if @message.save
-      redirect_to conversation_messages_path(@conversation)
+#      redirect_to conversation_messages_path(@conversation)
       render json: @conversation
     end
   end
 
   private
     def message_params
-      params.require(:message).permit(:body, :user_id)
+      params.permit(:body, :user_id, :conversation_id)
     end
 end
