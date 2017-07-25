@@ -5,12 +5,12 @@ class ConversationsController < ApplicationController
     @users = User.where.not(id: current_user.id)
     @conversations = Conversation.where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
     puts @conversations.methods
-    render json: @conversations, include: 'messages'
+    render json: @conversations, include: ['messages.user']
   end
 
   def show
     @conversations = Conversation.find(params[:id])
-    render json: @conversations, include: 'messages'
+    render json: @conversations, include: ['messages']
   end
 
   def create
