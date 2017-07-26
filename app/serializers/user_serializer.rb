@@ -4,4 +4,5 @@ class UserSerializer < ActiveModel::Serializer
   has_many :conversations_sent
   has_many :conversations_received
   has_many :messages
+  has_many :items_watched
 end

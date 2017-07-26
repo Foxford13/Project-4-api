@@ -9,5 +9,6 @@ class Item < ApplicationRecord
       validates :sub_type, presence: :true
       validates :location, presence: :true
       validates :price, presence: :true
+     has_and_belongs_to_many :watchers, class_name: "User", join_table: "items_users"
 
 end
