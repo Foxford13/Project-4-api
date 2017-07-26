@@ -17,10 +17,9 @@ class MessagesController < ApplicationController
 
   def create
     @message = @conversation.messages.new(message_params)
-    @message.user_id = current_user.id
+    @message.user = current_user
     if @message.save
-#      redirect_to conversation_messages_path(@conversation)
-      render json: @conversation
+      render json: @message
     end
   end
 

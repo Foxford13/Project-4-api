@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'conversations/index'
-
   scope :api do
     resources :users, except: [:create]
     resources :items

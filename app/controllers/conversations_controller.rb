@@ -2,31 +2,31 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.where.not(id: current_user.id)
     @conversations = Conversation.where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
-    puts @conversations.methods
-    render json: @conversations, include: ['messages.user']
+    render json: @conversations
   end
 
   def show
-    @conversations = Conversation.find(params[:id])
-    render json: @conversations, include: ['messages']
+    @conversation = Conversation.find(params[:id])
+    render json: @conversation, include: ['messages.user']
   end
 
-  def create
-    if Conversation.between(params[:sender_id], params[:receiver_id]).present?
-      @conversation = Conversation.between(params[:sender_id], params[:receiver_id]).first
+  def create    
+    if Conversation.between(current_user.id, params[:receiver_id]).present?
+      @conversation = Conversation.between(current_user.id, params[:receiver_id]).first
     else
-      @conversation = Conversation.create!(conversation_params)
+      @conversation = Conversation.new(conversation_params)
+      @conversation.sender = current_user
+
+      return render json: @conversation.errors, status: :unprocessable_entity unless @conversation.save
     end
 
-    # redirect_to conversation_messages_path(@conversation)
     render json: @conversation, status: :ok
   end
 
   private
     def conversation_params
-      params.permit(:sender_id, :receiver_id)
+      params.permit(:receiver_id)
     end
 
 end
