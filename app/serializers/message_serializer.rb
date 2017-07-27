@@ -1,5 +1,5 @@
 class MessageSerializer < ActiveModel::Serializer
-  attributes :id, :body
+  attributes :id, :body, :message_time
   belongs_to :conversation
   belongs_to :user
 

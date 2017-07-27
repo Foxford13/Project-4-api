@@ -3,7 +3,7 @@
 end
 
 User.create!([
-  { username: "mickyginger", email: "micky", firstname: "Mike", lastname: "Hayden", password: "password" },
+  { username: "mickyginger", email: "micky", firstname: "Mike", lastname: "Hayden", password: "password",  },
   { username: "eisacke", email: "eis", firstname: "Emily", lastname: "Isacke", password: "password" },
   { username: "markyjangles", email: "mark", firstname: "Marc", lastname: "De Vois", password: "password" },
   { username: "q", email: "q", firstname: "q", lastname: "q", password: "q" },

@@ -11,7 +11,7 @@ class ConversationsController < ApplicationController
     render json: @conversation, include: ['messages.user']
   end
 
-  def create    
+  def create
     if Conversation.between(current_user.id, params[:receiver_id]).present?
       @conversation = Conversation.between(current_user.id, params[:receiver_id]).first
     else
@@ -22,6 +22,11 @@ class ConversationsController < ApplicationController
     end
 
     render json: @conversation, status: :ok
+  end
+
+  def destroy
+    @conversation =  Conversation.find(params[:id])
+    @conversation.destroy
   end
 
   private
